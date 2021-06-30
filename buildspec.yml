@@ -1,0 +1,32 @@
+version: 0.2
+
+batch:
+  fast-fail: false
+  build-matrix:
+    static:
+      ignore-failure: false
+    dynamic:
+      env:
+        compute-type:
+          - BUILD_GENERAL1_SMALL
+          - BUILD_GENERAL1_MEDIUM
+          - BUILD_GENERAL1_LARGE
+
+phases:
+  install:
+    runtime-versions:
+      golang: 1.13
+  pre_build:
+    commands:
+      - echo 'prebuild'
+  build:
+    commands:
+      - echo 'Compiling the Java Code'
+      - javac -cp . HelloWorld.java
+      - if [ $CODEBUILD_BUILD_NUMBER -gt 100 ]; then fail; fi
+  post_build:
+    commands:
+      - echo "Would deploy here"
+artifacts:
+  files:
+  - 'HelloWorld.class'
