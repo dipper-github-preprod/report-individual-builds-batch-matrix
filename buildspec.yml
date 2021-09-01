@@ -23,7 +23,7 @@ phases:
     commands:
       - echo 'Compiling the Java Code'
       - javac -cp . HelloWorld.java
-      - if [ $CODEBUILD_BUILD_NUMBER -gt 100 ]; then fail; fi
+      - if [ $CODEBUILD_BUILD_NUMBER -gt 10 ]; then fail; fi
   post_build:
     commands:
       - echo "Would deploy here"
