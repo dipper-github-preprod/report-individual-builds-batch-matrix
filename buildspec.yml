@@ -13,9 +13,6 @@ batch:
           - BUILD_GENERAL1_LARGE
 
 phases:
-  install:
-    runtime-versions:
-      golang: 1.13
   pre_build:
     commands:
       - echo 'prebuild'
